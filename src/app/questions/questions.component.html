@@ -1,0 +1,81 @@
+<section class="title">
+  <h1>Welcome! </h1>
+  <h2>Escoge un nivel</h2>
+  <div class="container-buttons">
+    <button (click)="choiceOption(1)">Novato</button>
+    <button (click)="choiceOption(2)">Experto</button>
+  </div>
+</section>
+
+<mat-stepper *ngIf="option === 1 || option === 2" [orientation]="(stepperOrientation | async)!" #rextiepayStepper
+  [linear]="true" ngClass="{{ 'last-edited-step-' + rextiepayStepper.selectedIndex }}">
+  <ng-template matStepperIcon="done">
+    <mat-icon>done</mat-icon>
+  </ng-template>
+  <mat-step [stepControl]="firstFormGroup" editable="false">
+    <ng-template matStepLabel>HTML</ng-template>
+
+    <section>
+      <ng-container [ngSwitch]="stepperOrientation | async">
+        <h3 *ngSwitchCase="'horizontal'" class="title-step">HTML</h3>
+      </ng-container>
+      <h4>¿Qué significan las siglas HTML?</h4>
+      <input type="radio" name="html" value="1" (click)="isCorrect('no')">Hyper Text Mask Language
+      <br>
+      <input type="radio" name="html" value="2" (click)="isCorrect('yes')">Hyper Text Markup Language
+      <br>
+      <input type="radio" name="html" value="3" (click)="isCorrect('no')">Hard Text Mask Language
+      <br><br>
+      <div class="container-button">
+        <button (click)="setState(firstFormGroup, false);payStepper.next()" mat-button [disabled]="enabledButton">
+          Next
+        </button>
+      </div>
+    </section>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup" editable="false">
+    <ng-template matStepLabel>CSS</ng-template>
+
+    <section>
+      <ng-container [ngSwitch]="stepperOrientation | async">
+        <h3 *ngSwitchCase="'horizontal'" class="title-step">CSS</h3>
+      </ng-container>
+      <h4> ¿Qué significa CSS?</h4>
+      <input type="radio" name="css" value="1" (click)="isCorrect('yes'); result=true">Cascading Style Sheets
+      <br>
+      <input type="radio" name="css" value="2" (click)="isCorrect('no');result=false">Center Style Steels
+      <br>
+      <input type="radio" name="css" value="3" (click)="isCorrect('no');result=false">Calibre Style Sheet
+      <br><br>
+      <div class="container-button">
+        <div *ngIf="option === 1">
+          <p *ngIf="result">Felicidades!!</p>
+        </div>
+        <button mat-button *ngIf="option === 2"
+          (click)="setState(secondFormGroup, false);result===true ? payStepper.next() : '';result=false"
+          [disabled]="enabledButton">
+          Next
+        </button>
+
+      </div>
+    </section>
+  </mat-step>
+
+  <mat-step *ngIf="showStepThree">
+    <ng-template matStepLabel>JS</ng-template>
+
+    <section>
+      <ng-container [ngSwitch]="stepperOrientation | async">
+        <h3 *ngSwitchCase="'horizontal'" class="title-step">JS</h3>
+      </ng-container>
+      <h4>¿En qué lugar se ejecuta generalmente el código JavaScript?</h4>
+      <input type="radio" name="js" value="1" (click)="isCorrect('no');result=false">Servidor
+      <br>
+      <input type="radio" name="js" value="2" (click)="isCorrect('yes');result=true">Cliente (en el propio navegador de internet)
+      <br>
+      <input type="radio" name="js" value="3" (click)="isCorrect('no');result=false">No lo se
+        <p *ngIf="result">Felicidades!!</p>
+    </section>
+  </mat-step>
+</mat-stepper>

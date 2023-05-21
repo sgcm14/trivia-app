@@ -1,0 +1,141 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-stepper-vertical {
+  background-color: white;
+  margin-top: 20px;
+}
+
+.mat-stepper-horizontal {
+  background-color: white;
+  margin-top: 20px;
+}
+
+.mat-horizontal-stepper-header-container {
+  margin-bottom: 20px;
+}
+
+.mat-step-header.cdk-keyboard-focused,
+.mat-step-header.cdk-program-focused,
+.mat-step-header:hover {
+  background: transparent;
+}
+
+.mat-step-header .mat-step-icon {
+  background-color: white;
+  color: pink;
+  border: 1px solid pink;
+}
+
+.mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
+  background-color: #ff4081;
+  color: white;
+  border: 1px solid #ff4081;
+}
+
+.mat-stepper-vertical-line::before {
+  border: 0.5px dashed pink !important;
+  top: -20px;
+  bottom: -20px;
+}
+
+.mat-stepper-horizontal-line {
+  border: 0.5px dashed pink !important;
+  margin: 0 -22px !important;
+}
+
+@mixin styleStepLine($index) {
+  .mat-stepper-horizontal-line:nth-child(#{$index}) {
+    border: 0.5px solid #ff4081 !important;
+  }
+}
+
+.last-edited-step-1 {
+  @include styleStepLine(2);
+}
+
+.last-edited-step-2 {
+  @include styleStepLine(2);
+  @include styleStepLine(4);
+}
+
+.mat-step-header[aria-selected="false"]~.mat-stepper-vertical-line::before {
+  border: 0.5px solid #ff4081 !important;
+}
+
+.mat-step-header[aria-disabled="true"]~.mat-stepper-vertical-line::before {
+  border: 0.5px dashed pink !important;
+}
+
+.mat-step-text-label {
+  font-weight: bolder;
+}
+
+.mat-step-header .mat-step-label.mat-step-label-active {
+  color: #ff4081;
+
+  .mat-step-text-label {
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+.mat-step-header .mat-step-label.mat-step-label-selected {
+  color: #ff4081;
+
+  .mat-step-text-label {
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+.mat-step-header .mat-step-label,
+.mat-step-header .mat-step-optional {
+  color: pink;
+
+  .mat-step-text-label {
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
+
+.title-step {
+  color: #ff4081;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700 !important;
+}
+
+@media (max-width: 700px) {
+  .mat-vertical-content {
+    padding: unset !important;
+  }
+
+  .mat-horizontal-content-container {
+    padding: unset !important;
+  }
+
+  .mat-step-header .mat-step-label.mat-step-label-active {
+    display: none;
+  }
+
+  .mat-step-header .mat-step-label,
+  .mat-step-header .mat-step-optional {
+    display: none;
+  }
+
+  .mat-horizontal-stepper-header .mat-step-icon {
+    margin-right: 0px !important;
+  }
+}

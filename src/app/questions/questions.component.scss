@@ -1,0 +1,30 @@
+.title {
+  text-align: center;
+}
+
+.container-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-button {
+  @media (max-width: 700px) {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+}
+
+button {
+  width: 150px;
+  height: 30px;
+  background-color: #ff4081;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  font-weight: bolder;
+  font-size: 20px;
+  cursor: pointer;
+}
